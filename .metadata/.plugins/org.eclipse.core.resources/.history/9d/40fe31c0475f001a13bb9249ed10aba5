@@ -1,0 +1,31 @@
+package resources;
+
+
+import java.util.ArrayList;
+
+import pojoClass.Addpayloadpojo;
+
+public class TestBuild 
+{
+	
+	public Addpayloadpojo addPlacePayload(String name, String Language,String address)
+	{
+	pojoClass.Addpayloadpojo ap= new pojoClass.Addpayloadpojo();
+	ap.setAccuracy(50);
+	ap.setAddress(address);
+	ap.setLanguage(Language);
+	ap.setName(name);
+	ap.setPhone_number("(+91) 983 893 3937");
+	ArrayList<String> al=new ArrayList<String>();
+	al.add("shoe park");
+	al.add("shop");
+	ap.setTypes(al);
+	pojoClass.Location l=new pojoClass.Location();
+	l.setLat(-38.383494);
+	l.setLng(33.427362);
+	
+	ap.setLocation(l);
+	return ap;
+	}
+	
+}

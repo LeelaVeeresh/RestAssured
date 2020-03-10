@@ -1,0 +1,64 @@
+package resources;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.Properties;
+
+import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
+
+public class utils
+{
+public static RequestSpecification Req;//else for every test case, it will create a new instances.
+ResponseSpecification Responsespec;
+
+public RequestSpecification Requestspecification() throws IOException
+{  
+	//properties file for global variables
+	
+	//Added Logging features and utils files
+	if(Req==null)
+	{
+	PrintStream log=new PrintStream(new FileOutputStream("logging.txt"));
+          Req=new RequestSpecBuilder()
+		  .setBaseUri(GetGlobalVariable("BaseUrl")).setContentType(ContentType.JSON).addQueryParam("key", "qaclick123")
+		  .addFilter(RequestLoggingFilter.logRequestTo(log))
+		  .addFilter(ResponseLoggingFilter.logResponseTo(log))
+		  .build();
+     return Req;
+	}
+	return Req;
+}
+public ResponseSpecification Responsespecification()
+{
+	
+	Responsespec=new ResponseSpecBuilder().expectStatusCode(200).build();
+     return Responsespec;
+}
+
+public static String GetGlobalVariable(String key) throws IOException
+{
+	FileInputStream Stream=new FileInputStream("C:\\Users\\ei08022\\eclipse-workspace\\BDD\\src\\test\\java\\resources\\global.properties");
+	Properties prop=new Properties();
+	prop.load(Stream);
+	return prop.getProperty(key);
+	
+}
+public String getJsonPath(Response response,String key)
+{
+	String s1= response.asString();
+	JsonPath js=new JsonPath(s1);
+	return js.get(key).toString();	
+}
+}

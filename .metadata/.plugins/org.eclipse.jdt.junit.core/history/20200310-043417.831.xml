@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestRunner" project="BDD" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="cucumber.Options.TestRunner" time="6.724">
+    <testsuite name="Validating place APIs" time="6.724">
+      <testcase name="Verify if place is successfully added using AddplaceAPI" classname="Validating place APIs" time="4.225">
+        <skipped>io.cucumber.junit.UndefinedStepException: The step "Verify the PlaceID is maps with "leela" using "GetPlaceAPI"" is undefined. You can implement it using the snippet(s) below:
+
+@Then("Verify the PlaceID is maps with {string} using {string}")
+public void verify_the_PlaceID_is_maps_with_using(String string, String string2) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}&#13;
+&#13;
+</skipped>
+      </testcase>
+      <testcase name="Verify if place is successfully added using AddplaceAPI" classname="Validating place APIs" time="1.212">
+        <skipped>io.cucumber.junit.UndefinedStepException: The step "Verify the PlaceID is maps with "Girish" using "GetPlaceAPI"" is undefined. You can implement it using the snippet(s) below:
+
+@Then("Verify the PlaceID is maps with {string} using {string}")
+public void verify_the_PlaceID_is_maps_with_using(String string, String string2) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}&#13;
+&#13;
+</skipped>
+      </testcase>
+      <testcase name="Verify if place is successfully added using AddplaceAPI" classname="Validating place APIs" time="1.287">
+        <skipped>io.cucumber.junit.UndefinedStepException: The step "Verify the PlaceID is maps with "Anitha" using "GetPlaceAPI"" is undefined. You can implement it using the snippet(s) below:
+
+@Then("Verify the PlaceID is maps with {string} using {string}")
+public void verify_the_PlaceID_is_maps_with_using(String string, String string2) {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}&#13;
+&#13;
+</skipped>
+      </testcase>
+    </testsuite>
+  </testsuite>
+</testrun>

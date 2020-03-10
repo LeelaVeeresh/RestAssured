@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestRunner" project="BDD" tests="2" started="2" failures="0" errors="1" ignored="0">
+  <testsuite name="cucumber.Options.TestRunner" time="5.394">
+    <testsuite name="Validating place APIs" time="5.394">
+      <testcase name="Verify if place is successfully added using AddplaceAPI" classname="Validating place APIs" time="5.378"/>
+      <testcase name="Verify the deletePlaceAPI is sucessfully working" classname="Validating place APIs" time="0.016">
+        <error>java.lang.NullPointerException&#13;
+	at resources.utils.getJsonPath(utils.java:60)&#13;
+	at stepdefiniations.stepDef.deleteplace_Paylaod(stepDef.java:77)&#13;
+	at ✽.DeletePlace Paylaod(file:///C:/Users/ei08022/eclipse-workspace/BDD/src/test/java/features/placeValidations.feature:18)&#13;
+&#13;
+</error>
+      </testcase>
+    </testsuite>
+  </testsuite>
+</testrun>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestRunner" project="BDD" tests="1" started="1" failures="1" errors="0" ignored="0">
+  <testsuite name="cucumber.Options.TestRunner" time="5.157">
+    <testsuite name="Validating place APIs" time="5.157">
+      <testcase name="Verify if place is successfully added using AddplaceAPI" classname="Validating place APIs" time="5.157">
+        <failure>
+          <expected>leela</expected>
+          <actual>lila</actual>org.junit.ComparisonFailure: expected:&lt;l[ee]la&gt; but was:&lt;l[i]la&gt;&#13;
+	at org.junit.Assert.assertEquals(Assert.java:117)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:146)&#13;
+	at stepdefiniations.stepDef.verify_the_PlaceID_is_maps_with_using(stepDef.java:70)&#13;
+	at ✽.Verify the PlaceID is maps with "leela" using "GetPlaceAPI"(file:///C:/Users/ei08022/eclipse-workspace/BDD/src/test/java/features/placeValidations.feature:9)&#13;
+&#13;
+</failure>
+      </testcase>
+    </testsuite>
+  </testsuite>
+</testrun>

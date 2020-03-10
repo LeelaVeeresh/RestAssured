@@ -1,0 +1,58 @@
+package stepdefiniations;
+
+import java.util.ArrayList;
+import static io.restassured.RestAssured.given;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
+import static org.junit.Assert.*;
+import resources.TestBuild;
+
+public class stepDef 
+{
+	RequestSpecification res; 
+	ResponseSpecification Responsespec;
+	Response response;
+	TestBuild tb=new TestBuild();
+	@Given("AddPlace payload")
+	public void addplace_payload() 
+	{ RestAssured.baseURI = "http://216.10.245.166";
+		RequestSpecification Req=new RequestSpecBuilder().setBaseUri("http://216.10.245.166").setContentType(ContentType.JSON).addQueryParam("key", "qaclick123").build();
+	  Responsespec=new ResponseSpecBuilder().expectStatusCode(200).build();
+		res=given().spec(Req)
+		.body(tb.addPlacePayload());
+	}
+
+	@When("user calls {string} post http request")
+	public void user_calls_post_http_request(String string) {
+		response=res.when().post("/maps/api/place/add/json")
+				.then().spec(Responsespec).extract().response();
+			
+	}
+
+	@Then("API call got success with status code {int}")
+	public void api_call_got_success_with_status_code(Integer int1)
+	{
+		assertEquals(response.getStatusCode(),200);
+	}
+	
+	@Then("{string} in response body is {string}")
+	public void response_body_is(String key, String value)
+	{
+		String resp=response.asString(); 
+		JsonPath js=new JsonPath(resp);
+		System.out.print(resp);
+		assertEquals(js.get(key).toString(),value);
+	}
+
+
+
+}

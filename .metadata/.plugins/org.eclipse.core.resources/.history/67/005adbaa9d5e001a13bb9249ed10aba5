@@ -1,0 +1,71 @@
+package stepdefiniations;
+
+import java.util.ArrayList;
+import static io.restassured.RestAssured.given;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
+import static org.junit.Assert.*;
+
+public class stepDef 
+{
+	RequestSpecification res; 
+	ResponseSpecification Responsespec;
+	Response response;
+	JsonPath js;
+	@Given("AddPlace payload")
+	public void addplace_payload() 
+	{ RestAssured.baseURI = "http://216.10.245.166";
+		pojoClass.Addpayloadpojo ap= new pojoClass.Addpayloadpojo();
+		ap.setAccuracy(50);
+		ap.setAddress("29, side layout, cohen 09");
+		ap.setLanguage("French-IN");
+		ap.setName("Frontline house");
+		ap.setPhone_number("(+91) 983 893 3937");
+		ArrayList<String> al=new ArrayList<String>();
+		al.add("shoe park");
+		al.add("shop");
+		ap.setTypes(al);
+		pojoClass.Location l=new pojoClass.Location();
+		l.setLat(-38.383494);
+		l.setLng(33.427362);
+		
+		ap.setLocation(l);
+		
+		RequestSpecification Req=new RequestSpecBuilder().setBaseUri("http://216.10.245.166").setContentType(ContentType.JSON).addQueryParam("key", "qaclick123").build();
+	  Responsespec=new ResponseSpecBuilder().expectStatusCode(200).build();
+		res=given().spec(Req)
+		.body(ap);
+	}
+
+	@When("user calls {string} post http request")
+	public void user_calls_post_http_request(String string) {
+		response=res.when().post("/maps/api/place/add/json")
+				.then().spec(Responsespec).extract().response();
+			
+	}
+
+	@Then("API call got success with status code {int}")
+	public void api_call_got_success_with_status_code(Integer int1)
+	{
+		assertEquals(response.getStatusCode(),200);
+	}
+	
+	@Then("{string} response body is {string}")
+	public void response_body_is(String key, String value)
+	{
+		js=new JsonPath(response.asString());
+		assertEquals(js.get(key).toString(),value);
+	}
+
+
+
+}

@@ -1,0 +1,40 @@
+package resources;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
+import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
+import io.restassured.http.ContentType;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
+
+public class utils
+{
+RequestSpecification Req;
+ResponseSpecification Responsespec;
+
+public RequestSpecification Requestspecification() throws FileNotFoundException
+{
+	PrintStream stream=new PrintStream(new FileOutputStream("logging.txt"));
+    PrintStream log=new PrintStream(new FileOutputStream("logging.txt"));
+	RestAssured.baseURI = "http://216.10.245.166";
+  Req=new RequestSpecBuilder()
+		  .setBaseUri("http://216.10.245.166").setContentType(ContentType.JSON).addQueryParam("key", "qaclick123")
+		  .addFilter(RequestLoggingFilter.logRequestTo(stream))
+		  .addFilter(ResponseLoggingFilter.logResponseTo(log))
+		  .build();
+     return Req;
+}
+public ResponseSpecification Responsespecification()
+{
+	
+	Responsespec=new ResponseSpecBuilder().expectStatusCode(200).build();
+     return Responsespec;
+}
+}

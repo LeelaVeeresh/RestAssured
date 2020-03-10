@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestRunner" project="BDD" tests="2" started="2" failures="2" errors="0" ignored="0">
+  <testsuite name="cucumber.Options.TestRunner" time="5.128">
+    <testsuite name="Validating place APIs" time="5.128">
+      <testcase name="Verify if place is successfully added using AddplaceAPI" classname="Validating place APIs" time="3.732">
+        <failure>
+          <expected>OK</expected>
+          <actual>APP</actual>org.junit.ComparisonFailure: expected:&lt;[OK]&gt; but was:&lt;[APP]&gt;&#13;
+	at org.junit.Assert.assertEquals(Assert.java:117)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:146)&#13;
+	at stepdefiniations.stepDef.response_body_is(stepDef.java:61)&#13;
+	at ✽."scope" in response body is "APP"(file:///C:/Users/ei08022/eclipse-workspace/BDD/src/test/java/features/placeValidations.feature:8)&#13;
+&#13;
+</failure>
+      </testcase>
+      <testcase name="Verify the deletePlaceAPI is sucessfully working" classname="Validating place APIs" time="1.395">
+        <failure>java.lang.AssertionError: expected:&lt;404&gt; but was:&lt;200&gt;&#13;
+	at org.junit.Assert.fail(Assert.java:89)&#13;
+	at org.junit.Assert.failNotEquals(Assert.java:835)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:647)&#13;
+	at org.junit.Assert.assertEquals(Assert.java:633)&#13;
+	at stepdefiniations.stepDef.api_call_got_success_with_status_code(stepDef.java:54)&#13;
+	at ✽.API call got success with status code 200(file:///C:/Users/ei08022/eclipse-workspace/BDD/src/test/java/features/placeValidations.feature:20)&#13;
+&#13;
+</failure>
+      </testcase>
+    </testsuite>
+  </testsuite>
+</testrun>

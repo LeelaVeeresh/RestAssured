@@ -1,0 +1,77 @@
+package stepdefiniations;
+
+import java.util.ArrayList;
+import static io.restassured.RestAssured.given;
+import RestAssuredPOC.BDD.Addpayloadpojo;
+import RestAssuredPOC.BDD.Location;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
+import static org.junit.Assert;
+
+public class stepDef 
+{
+	RequestSpecification res; 
+	ResponseSpecification Responsespec;
+	Response response;
+	@Given("AddPlace payload")
+	public void addplace_payload() 
+	{
+		Addpayloadpojo ap= new Addpayloadpojo();
+		ap.setAccuracy(50);
+		ap.setAddress("29, side layout, cohen 09");
+		ap.setLanguage("French-IN");
+		ap.setName("Frontline house");
+		ap.setPhone_number("(+91) 983 893 3937");
+		ArrayList al=new ArrayList();
+		al.add("shoe park");
+		al.add("shop");
+		ap.setTypes(al);
+		Location l=new Location();
+		l.setLat(-38.383494);
+		l.setLng(33.427362);
+		
+		ap.setLocation(l);
+		
+		RequestSpecification Req=new RequestSpecBuilder().setBaseUri("https://rahulshettyacademy.com").setContentType(ContentType.JSON).addQueryParam("key", "qaclick123").build();
+		ResponseSpecification Responsespec=new ResponseSpecBuilder().expectStatusCode(200).expectStatusLine("ok").build();
+		RequestSpecification res=given().spec(Req)
+		.body(ap);
+	}
+
+	@When("user calls {string} post http request")
+	public void user_calls_post_http_request(String string) {
+		response=res.when().post("/maps/api/place/add/json")
+				.then().spec(Responsespec).extract().response();
+			
+	}
+
+	@Then("API call got success with status code {int}")
+	public void api_call_got_success_with_status_code(Integer int1)
+	{
+		AssertEquals()
+	}
+	
+
+	@Then("{string} response body is {string}")
+	public void response_body_is1(String string, String string2) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("{string} response body is {string}")
+	public void response_body_is(String string, String string2) {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+
+
+}

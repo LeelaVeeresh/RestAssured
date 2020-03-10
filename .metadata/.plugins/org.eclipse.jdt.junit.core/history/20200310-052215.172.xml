@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestRunner" project="BDD" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="cucumber.Options.TestRunner" time="5.098">
+    <testsuite name="Validating place APIs" time="5.098">
+      <testcase name="Verify if place is successfully added using AddplaceAPI" classname="Validating place APIs" time="5.067"/>
+      <testcase name="Verify the deletePlaceAPI is sucessfully working" classname="Validating place APIs" time="0.031">
+        <skipped>io.cucumber.junit.UndefinedStepException: The step "DeletePlace Paylaod" is undefined. You can implement it using the snippet(s) below:
+
+@Given("DeletePlace Paylaod")
+public void deleteplace_Paylaod() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}&#13;
+&#13;
+</skipped>
+      </testcase>
+    </testsuite>
+  </testsuite>
+</testrun>

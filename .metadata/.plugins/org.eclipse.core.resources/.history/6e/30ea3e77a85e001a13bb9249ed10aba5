@@ -1,0 +1,18 @@
+package resources;
+
+import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.http.ContentType;
+import io.restassured.specification.RequestSpecification;
+
+public class utils
+{
+RequestSpecification Req;
+public RequestSpecification Requestspecification()
+{
+	RestAssured.baseURI = "http://216.10.245.166";
+  Req=new RequestSpecBuilder().setBaseUri("http://216.10.245.166").setContentType(ContentType.JSON).addQueryParam("key", "qaclick123").build();
+     return Req;
+}
+}
